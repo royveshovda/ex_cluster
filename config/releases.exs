@@ -16,5 +16,5 @@ config :ex_cluster, ExClusterWeb.Endpoint,
 
 config :peerage,
   via: Peerage.Via.List,
-  node_list: [:"node1@node1.local", :"node2@node2.local"],
+  node_list: [:"node1@node1.local", :"node2@node2.local", :"node3@node3.local"],
   log_results: true

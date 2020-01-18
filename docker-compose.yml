@@ -27,3 +27,16 @@ services:
       - LANG=C.UTF-8
     ports:
       - "4002:4002"
+  node3.local:
+    image: ex_cluster:latest
+    environment:
+      - RELEASE_COOKIE=secret-cookie
+      - SERVICE_NAME=ex_cluster
+      - SECRET_KEY_BASE=foo
+      - PORT=4003
+      - APP_HOST=localhost
+      - NODE_NAME=node3
+      - HOSTNAME=node3.local
+      - LANG=C.UTF-8
+    ports:
+      - "4003:4003"
