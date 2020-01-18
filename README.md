@@ -1,18 +1,12 @@
 # ExCluster
 
-To start your Phoenix server:
+## Locally
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server`
+To get up and running on docker locally, run the following commands:
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+* `docker build -t ex_cluster:latest .`
+* `docker-compose up`
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## AWS
 
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+Next step is to get the same cluster running on AWS ECS using Fargate and service discovery.
