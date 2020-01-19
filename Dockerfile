@@ -1,32 +1,21 @@
-FROM elixir:1.9 AS builder
+FROM bitwalker/alpine-elixir-phoenix:latest AS phx-builder
 
 ENV MIX_ENV=prod
+ADD . .
+RUN mix deps.get --only prod
+RUN mix compile
+RUN mix release
 
-WORKDIR /usr/local/ex_cluster
 
-# This step installs all the build tools we'll need
-RUN mix local.rebar --force && \
-    mix local.hex --force
+FROM alpine:3.10
 
-# Copies our app source code into the build container
-COPY . .
+RUN apk add --no-cache openssl
+RUN apk add --no-cache ncurses-libs
 
-# Compile Elixir
-RUN mix do deps.get, deps.compile, compile
+ENV  MIX_ENV=prod
 
-# Build Release
-RUN mkdir -p /opt/release \
-    && mix release \
-    && mv _build/${MIX_ENV}/rel/ex_cluster /opt/release
+COPY --from=phx-builder /opt/app/_build/prod /opt/app/_build/prod
 
-# Create the runtime container
-FROM erlang:22 as runtime
+WORKDIR /opt/app/_build/prod/rel/ex_cluster/bin/
 
-WORKDIR /usr/local/ex_cluster
-
-COPY --from=builder /opt/release/ex_cluster .
-
-CMD [ "bin/ex_cluster", "start" ]
-
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=2 \
- CMD nc -vz -w 2 localhost 4000 || exit 1
+CMD ["/opt/app/_build/prod/rel/ex_cluster/bin/ex_cluster", "start"]
