@@ -12,8 +12,10 @@ services:
       - NODE_NAME=node1
       - HOSTNAME=node1.local
       - LANG=C.UTF-8
+      - EPMDLESS_DIST_PORT=17012
     ports:
       - "4001:4001"
+      - "17012:17012"
   node2.local:
     image: ex_cluster:latest
     environment:
@@ -25,8 +27,10 @@ services:
       - NODE_NAME=node2
       - HOSTNAME=node2.local
       - LANG=C.UTF-8
+      - EPMDLESS_DIST_PORT=17013
     ports:
       - "4002:4002"
+      - "17013:17013"
   node3.local:
     image: ex_cluster:latest
     environment:
@@ -38,5 +42,7 @@ services:
       - NODE_NAME=node3
       - HOSTNAME=node3.local
       - LANG=C.UTF-8
+      - EPMDLESS_DIST_PORT=17014
     ports:
       - "4003:4003"
+      - "17014:17014"

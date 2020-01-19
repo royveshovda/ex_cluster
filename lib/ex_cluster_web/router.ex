@@ -8,5 +8,10 @@ defmodule ExClusterWeb.Router do
   scope "/", ExClusterWeb do
     pipe_through :api
     get "/", DefaultController, :index
+    get "/env", DefaultController, :env
+    get "/ips", DefaultController, :ips
+    get "/ecs", DefaultController, :ecs
+    get "/connect", DefaultController, :connect
+    get "/connect2", DefaultController, :connect2
   end
 end

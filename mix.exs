@@ -19,7 +19,7 @@ defmodule ExCluster.MixProject do
   def application do
     [
       mod: {ExCluster.Application, []},
-      extra_applications: [:logger, :runtime_tools, :peerage]
+      extra_applications: [:logger, :runtime_tools, :peerage, :httpoison, :epmdless]
     ]
   end
 
@@ -37,7 +37,10 @@ defmodule ExCluster.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:peerage, "~> 1.0"}
+      {:peerage, "~> 1.0"},
+      {:httpoison, "~> 1.6"},
+      {:poison, "~> 4.0"},
+      {:epmdless, "~> 0.2.0"}
     ]
   end
 end
