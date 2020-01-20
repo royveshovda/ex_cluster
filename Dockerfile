@@ -16,6 +16,9 @@ ENV  MIX_ENV=prod
 
 COPY --from=phx-builder /opt/app/_build/prod /opt/app/_build/prod
 
+EXPOSE 80
+EXPOSE 17012
+
 WORKDIR /opt/app/_build/prod/rel/ex_cluster/bin/
 
 CMD ["/opt/app/_build/prod/rel/ex_cluster/bin/ex_cluster", "start"]

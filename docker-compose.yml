@@ -7,42 +7,39 @@ services:
       - RELEASE_COOKIE=secret-cookie
       - SERVICE_NAME=ex_cluster
       - SECRET_KEY_BASE=foo
-      - PORT=4001
+      - PORT=80
       - APP_HOST=localhost
       - NODE_NAME=node1
       - HOSTNAME=node1.local
       - LANG=C.UTF-8
       - EPMDLESS_DIST_PORT=17012
     ports:
-      - "4001:4001"
-      - "17012:17012"
+      - "4001:80"
   node2.local:
     image: ex_cluster:latest
     environment:
       - RELEASE_COOKIE=secret-cookie
       - SERVICE_NAME=ex_cluster
       - SECRET_KEY_BASE=foo
-      - PORT=4002
+      - PORT=80
       - APP_HOST=localhost
       - NODE_NAME=node2
       - HOSTNAME=node2.local
       - LANG=C.UTF-8
-      - EPMDLESS_DIST_PORT=17013
+      - EPMDLESS_DIST_PORT=17012
     ports:
-      - "4002:4002"
-      - "17013:17013"
+      - "4002:80"
   node3.local:
     image: ex_cluster:latest
     environment:
       - RELEASE_COOKIE=secret-cookie
       - SERVICE_NAME=ex_cluster
       - SECRET_KEY_BASE=foo
-      - PORT=4003
+      - PORT=80
       - APP_HOST=localhost
       - NODE_NAME=node3
       - HOSTNAME=node3.local
       - LANG=C.UTF-8
-      - EPMDLESS_DIST_PORT=17014
+      - EPMDLESS_DIST_PORT=17012
     ports:
-      - "4003:4003"
-      - "17014:17014"
+      - "4003:80"
