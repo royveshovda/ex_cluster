@@ -6,7 +6,7 @@ defmodule ExClusterWeb.DefaultController do
 
   def index(conn, _params) do
     nodes = Node.list()
-    nodes2 = :epmdless_dist.list_nodes()
+    nodes2 = []
     self = Node.self()
     imageid = fetch_image_id()
     
@@ -79,42 +79,9 @@ defmodule ExClusterWeb.DefaultController do
     json(conn, %{"status" => "ok", "nodes" => nodes, "results" => inspect(results)})
   end
 
-  #defp connect_ip(ip) do
-  #  {:ok, adr} = :inet.parse_address(to_charlist(ip))
-  #  {:ok, {:hostent, name, _, :inet, 4, _}} = :inet.gethostbyaddr(adr)
-  #  node = String.to_atom("ex_cluster@" <> to_string(name))
-  #  :epmdless_dist.add_node(node, 17012)
-  #  #Node.connect(node)
-  #end
-
   defp connect_node(name) do
     node = String.to_atom(name)
-    :epmdless_dist.add_node(node, 17012)
-    #Node.connect(node)
-  end
-
-  def connect_all2(conn, _params) do
-    result = 
-      ["node1.local", "node2.local", "node3.local"]
-      |> Enum.map(fn n -> connect2(n) end)
-    json(conn, %{"status" => "ok", "results" => result})
-  end
-
-  defp connect2(name) do
-    node = String.to_atom("ex_cluster@" <> name)
-    :epmdless_dist.add_node(node, 17012)
-  end
-
-  def ping_all2(conn, _params) do
-    result = 
-      ["node1.local", "node2.local", "node3.local"]
-      |> Enum.map(fn n -> ping2(n) end)
-    json(conn, %{"status" => "ok", "results" => result})
-  end
-
-  defp ping2(name) do
-    node = String.to_atom("ex_cluster@" <> name)
-    :net_adm.ping(node)
+    Node.connect(node)
   end
 
   def all_ids(conn, _params) do

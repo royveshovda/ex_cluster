@@ -10,10 +10,12 @@ config :ex_cluster, ExClusterWeb.Endpoint,
   secret_key_base: secret_key_base,
   url: [host: {:system, "APP_HOST"}, port: {:system, "PORT"}]
 
-config :peerage, via: Peerage.Via.Dns,
-  dns_name: service_name,
-  app_name: "ex_cluster",
-  log_results: true
+#config :peerage, via: Peerage.Via.Dns,
+#  dns_name: service_name,
+#  app_name: "ex_cluster",
+#  log_results: true
+
+config :peerage, via: ClusterFinder
 
 #config :peerage,
 #  via: Peerage.Via.List,

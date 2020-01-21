@@ -9,5 +9,4 @@
 
 ## Tweak GC to run more often
 ##-env ERL_FULLSWEEP_AFTER 10
-## -kernel inet_dist_listen_min 4370 inet_dist_listen_max 4370
--proto_dist epmdless_proto -start_epmd false -epmd_module epmdless_client
+-kernel inet_dist_listen_min 4370 inet_dist_listen_max 4370

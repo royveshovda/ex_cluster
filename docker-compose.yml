@@ -12,7 +12,6 @@ services:
       - NODE_NAME=node1
       - HOSTNAME=node1.local
       - LANG=C.UTF-8
-      - EPMDLESS_DIST_PORT=17012
     ports:
       - "4001:80"
   node2.local:
@@ -26,7 +25,6 @@ services:
       - NODE_NAME=node2
       - HOSTNAME=node2.local
       - LANG=C.UTF-8
-      - EPMDLESS_DIST_PORT=17012
     ports:
       - "4002:80"
   node3.local:
@@ -40,6 +38,5 @@ services:
       - NODE_NAME=node3
       - HOSTNAME=node3.local
       - LANG=C.UTF-8
-      - EPMDLESS_DIST_PORT=17012
     ports:
       - "4003:80"
